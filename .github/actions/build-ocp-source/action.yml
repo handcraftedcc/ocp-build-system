@@ -91,7 +91,7 @@ runs:
         set -u
         set -o pipefail
 
-        git clone https://github.com/cadquery/OCP.git
+        git clone "${OCP_REPOSITORY:-https://github.com/CadQuery/OCP.git}"
         cd OCP
         # use master for the time being
         # git checkout -b V${{ env.OCP }} tags/${{ env.OCP }}
