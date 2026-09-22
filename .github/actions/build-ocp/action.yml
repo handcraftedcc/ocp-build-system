@@ -209,7 +209,7 @@ runs:
 
         cd OCP
 
-        if [ -f new ]; then
+        if [ -d new/OCP ]; then
           mv new/OCP .  # in case of PYWRAP==true
         fi
 
@@ -223,7 +223,7 @@ runs:
         cd ..
 
         echo "Patch VTK out of OCP/OCP.cpp"
-        if [ -d new ]; then cd new; fi  # PYWRAP==true
+        if [ -d new/OCP ]; then cd new; fi  # PYWRAP==true
 
         rm OCP/IVtk*
         for module in IVtk IVtkOCC IVtkTools IVtkVTK; do
