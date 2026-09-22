@@ -214,6 +214,14 @@ runs:
         fi
 
         cd OCP
+
+        # Generated OCP source caches may predate the XCAF material helper's
+        # dependency declarations. Keep those cached sources buildable while
+        # freshly generated sources receive these includes from ocp.toml.
+        if grep -q 'TDataStd_TreeNode' XCAFDoc.cpp; then
+          sed -i.bak '1i #include <TDataStd_TreeNode.hxx>\n#include <TCollection_HAsciiString.hxx>' XCAFDoc.cpp
+        fi
+
         echo "Patch VTK out of CMakeLists.txt"
         sed -i.bak '/find_package( VTK/,/)/d' CMakeLists.txt
         # OCP 8.0.0.0 puts pybind11::pybind11, the VTK:: targets and fmt::fmt on ONE line,
